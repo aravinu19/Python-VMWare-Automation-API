@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Victum</title>
+        <link href="/static/main.css" type="text/css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="inner-left-container">
+                <div id="parent" class="inner-list-container">
+                    <ul id="host_list">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="inner-right-container">
+                <img src="/static/vmware-01.png" class="logo"/>
+            </div>
+        </div>
+
+    </body>
+
+    <script>
+
+        window.onload = function(){
+        var requiredParent = document.getElementById("parent");
+        var ul = document.getElementById("host_list");
+        requiredParent.appendChild(ul);
+
+        // for (var i = 1; i <= 10; i++)
+        // {
+        //     var li = document.createElement("li");
+        //     li.className = "column";
+        //     li.id = "host_id";
+
+        //     var a = document.createElement("a");
+        //     a.id = "host";
+        //     a.innerHTML = "data " + i;
+        //     a.className = "host-data";
+        //     a.href="loginportal.html";
+
+        //     li.appendChild(a);
+        //     ul.appendChild(li);
+        // }
+
+        var li = document.createElement("li");
+        li.className = "column";
+        li.id = "host_id";
+
+        var a = document.createElement("a");
+        a.id = "host";
+        a.innerHTML = "Datacenter Hyderabad";
+        a.className = "host-data";
+        a.href= "/loginPortal";
+
+        li.appendChild(a);
+        ul.appendChild(li);
+
+        var uli = document.getElementById('host');
+        uli.onclick = function(event) {
+        var target = event.target;
+        window.location.href=target.href;
+    };
+    }
+
+
+
+    </script>
+</html>

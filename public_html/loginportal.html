@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Victum - LogIn</title>
+        <link href="/static/main.css" type="text/css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+
+            <div id="pre_loader" class="pre-loader">
+                    <div class="loader-container">
+                            <img style="width:400px;position:absolute;" src="/static/vmware-01.png" id="icon" alt="User Icon" />
+
+                    <div  class="lds-ripple"><div></div><div></div></div>
+                </div>
+            </div>
+
+        <div id="main_wrapper" class="main-login">
+        <div id="inner_wrapper" class="wrapper fadeInDown">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+              <h2 class="active"> Victum Portal </h2>
+
+              <!-- Icon -->
+              <div  id="inner_wrapper2" class="fadeIn">
+                <img src="/static/vmware-01.png" id="icon" alt="User Icon" />
+              </div>
+
+              <!-- Login Form -->
+              <form action="javascript:openMe(this);">
+                <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+                <input type="submit" class="fadeIn fourth" value="Log In">
+              </form>
+
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    </body>
+
+    <script>
+        function openMe(){
+            var openMe = document.getElementById("pre_loader");
+            var main = document.getElementById("main_wrapper");
+
+            var userid = document.getElementById('login').value;
+            var password = document.getElementById('password').value;
+
+            axios.post('/connect', {
+              'username': userid,
+              'password': password,
+              'hostip': "192.168.127.130"
+            }).then((response) => {
+              console.log(response);
+            }).catch((err) => console.log(err));
+
+            document.body.style.background="whitesmoke";
+            openMe.style.display="block";
+            main.style.display = "none"
+            setTimeout(function(){
+              window.location.href="/dashboard";
+          }, 3000);
+        }
+      </script>
+
+    </html>

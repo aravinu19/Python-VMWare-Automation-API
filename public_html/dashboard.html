@@ -1,0 +1,410 @@
+<html>
+    <head>
+        <title>Victum - DashBoard</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+        <link href="/static/main.css" type="text/css" rel="stylesheet"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    </head>
+    <style>
+        body {
+  margin: 0;
+ background-color: #33BBE1;
+  /* color: #fff; */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#power-text{
+  color: #2a2a2a;
+  text-shadow: 0 1px 0 #ffba92;
+}
+
+#btn-bg{
+  width: 40px;
+  height: 40px;
+  background: whitesmoke;
+  border-radius: 41px;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+}
+
+#btn-bg:active{
+  transform: scale(0.9);
+}
+
+
+
+#btn-highlight{
+  width: 41px;
+  height: 82px;
+  background: #eee;
+  margin-left: 41px;
+}
+
+.active #btn-highlight{
+  background: #52555d;
+}
+
+
+.checkbox label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 4px;
+    width: 22px;
+    height: 22px;
+    transition: transform 0.28s ease;
+    border-radius: 3px;
+    border: 2px solid #7bbe72;
+}
+
+
+
+#btn-ring{
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border: 10px solid #2a2a2a;
+  top: 10px;
+  left: 10px;
+  border-radius: 31px;
+}
+
+.active #btn-ring{
+  border-color: #61fc8c;
+}
+
+#ring-line{
+  width: 10px;
+  height: 41px;
+  margin: -14px auto;
+  background: #2a2a2a;
+  border-radius: 7px;
+  border-right: 3px solid #eee;
+  border-left: 3px solid #cdd3c9;
+}
+
+.active #ring-line{
+  background: #61fc8c;
+  border-right: 3px solid grey;
+  border-left: 3px solid #2d3036;
+}
+
+  #btn-bg{
+      position: absolute;right: 3%;
+      box-shadow: none;
+      width: 5%;
+      height: 10%;
+      top:5%;
+  }
+  .vm-list-container{
+    position: relative;
+    top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display:block;
+  overflow:auto;
+  height:50%;
+  width:100%;
+  }
+  .vm-list-container-head{
+    position: relative;
+    top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display:block;
+  overflow:auto;
+  height:50%;
+  width:100%;
+  }
+  #customers {
+    table-layout:fixed;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  height: 150px;
+  width: 100%;
+
+}
+.fixed_header thead tr{
+  display:block;
+}
+#customers td, #customers th {
+  border: none;
+  padding: 8px;
+  color: black;
+}
+
+#customers tr:nth-child(even){background-color: whitesmoke;}
+
+#customers tr:hover {background-color: grey;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: whitesmoke;
+  color: black;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:red;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+left: 1px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: green;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px green;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.rig-it{
+  position: absolute;
+  top: 10%;
+    margin:0 0 20px 0;
+    font-family: 'Lato',sans-serif;
+    font-size: 15px;
+    padding: 14px;
+    background: #33BBE1;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    color: whitesmoke;
+    width: 15%;
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+}.rig-it:hover{
+    color:gray;
+    background: whitesmoke;
+    cursor: pointer;
+}
+.rig-it:active{
+    transform: scale(0.9);
+}
+    </style>
+    <body>
+
+        <button onclick="datePicker()"class="rig-it" >Schedule</button>
+        <div style="position:absolute;top:22%;left:30%;display:none;" id="datepicker" class="container">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <input type='text' class="form-control" id='datetimepicker4' />
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker4').datetimepicker({
+                            format: 'DD/MM/YYYY hh:mm',
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+                    <div onclick="powerChange()" id="btn-bg">
+                           <img id="power_png" style="margin-left: auto;
+                           margin-right: auto;
+                           display: block;margin-top: 9px;" width="40px" height="40px"/>
+                          </div>
+
+
+                          <div id="container" class="vm-list-container">
+                         <table width="300" id="customers">
+                                  <!-- <tr>
+                                    <td>192.168.1.1</td>
+                                   <td><div style="display:flex;">
+                                      <label class="switch">
+                                      <input onclick="checkState()" type="checkbox" id="myCheck">
+                                      <span class="slider round"></span>
+                                    </label><span id="status"style="font-size: 13px;margin-left: 30px;margin-top: 3px;"></span></div></td>
+                                  </tr> -->
+
+                                </table>
+                          </div>
+
+
+    </body>
+</html>
+<script>
+var check = true;
+var elementsList;
+window.onload = function(){
+
+
+    var rows = '';
+    var count = 0;
+    axios.post('/getvms').then((response)=>{
+      var elements = response.data;
+      elementsList = elements;
+
+      while(typeof elements[count] !== 'undefined'){
+        console.log(elements[count]['Name']);
+
+        rows += `<tr id = "row${count}"><td id = "tab${count}">${elements[count]['Name']}</td><td><div style="display:flex;"><label class="switch"><input onclick="checkState(this);" type="checkbox" id="myCheck${count}"><span class="slider round"></span></label><span id="status${count}" style="font-size: 13px;margin-left: 30px;margin-top: 3px;">${elements[count]['state']}</span></div></td></tr>`;
+
+        count += 1;
+      }
+
+      document.getElementById('customers').innerHTML = rows;
+
+      for(var index = 0; index < count; index++){
+
+        if ((elementsList[index]['state'].toString().includes('PoweredOn'))) {
+            document.getElementById('myCheck'+index).checked = true;
+            console.log(true);
+        }
+
+      }
+
+    });
+
+
+
+    // for( var i = 0; i <= 10; i++ )
+    // {
+    //     rows += '<tr id = "row' + i + '"><td>192.168.1.1</td><td><div style="display:flex;"><label class="switch"><input onclick="checkState();" type="checkbox" id="myCheck"><span class="slider round"></span></label><span id="status" style="font-size: 13px;margin-left: 30px;margin-top: 3px;">Stopped</span></div></td></tr>';
+    //
+    // }
+
+      // document.getElementById('customers').innerHTML = rows;
+
+  var checkBox = document.getElementById("myCheck");
+  var stateText = document.getElementById("status");
+  var powerPng = document.getElementById("power_png");
+  if(check=true){
+  powerPng.setAttribute('src','/static/powerin.svg');
+  }
+
+}
+
+function checkState(element){
+
+  var index = (element.id).split("myCheck")[1];
+  var vmname = document.getElementById(`tab${index}`);
+  var vmstate = document.getElementById('status'+index);
+
+  console.log(vmname.innerText)
+
+  if (vmstate.innerText === 'PoweredOff') {
+
+    vmstate.innerText = 'Powering up the VM Please Wait !'
+
+    axios.post('/power_on', {
+      'vmname': vmname.innerText
+    }).then((response) => {
+      console.log(response.data);
+      vmstate.innerText = 'PoweredOn'
+    });
+
+  } else {
+
+    vmstate.innerText = 'Powering down the VM Please Wait !'
+
+    axios.post('/power_off', {
+      'vmname': vmname.innerText
+    }).then((response) => {
+      console.log(response.data);
+      vmstate.innerText = 'PoweredOff'
+    });
+
+  }
+
+}
+
+function datePicker(){
+  var dateInput = document.getElementById("datepicker");
+  dateInput.style.display="block";
+}
+
+function powerChange(){
+  var powerDiv = document.getElementById("btn-bg");
+  var powerPng = document.getElementById("power_png");
+
+  if(check==false){
+    // powerControl.style.backgroundColor = "white";
+    powerPng.setAttribute('src','/static/powerin.svg');
+
+    axios.post('/maintanence', {
+      mode: 'OFF'
+    }).then((response) => {
+      alert(response.data['mode']);
+    })
+
+    check=true;
+  }else{
+    // powerControl.style.backgroundColor = "black";
+    powerPng.setAttribute('src','/static/power.svg');
+
+    axios.post('/maintanence', {
+      mode: 'ON'
+    }).then((response) => {
+      alert(response.data['mode']);
+    })
+
+    check=false;
+  }
+
+  // axios.post('/sign_out');
+
+}
+
+
+</script>
